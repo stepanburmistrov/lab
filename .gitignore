@@ -1,0 +1,9 @@
+# Build outputs and local IDE files
+.DS_Store
+Thumbs.db
+*.bin
+*.elf
+*.map
+*.hex
+.vscode/
+.idea/
