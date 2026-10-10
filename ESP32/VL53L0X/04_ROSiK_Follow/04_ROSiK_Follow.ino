@@ -910,9 +910,9 @@ constexpr float TURN_WHEEL_SPEED = 65.0f;  // мм/с
 constexpr float RIGHT_TURN_RAD = 1.5707963f;
 constexpr float ANGLE_TOLERANCE = 0.07f;
 
-// Для данного кольца правая половина условно LED 0..3.
-// Если мигает левая — измените эти четыре индекса.
-const uint8_t RIGHT_LED_INDEX[3] = {4, 5, 6};
+// По результатам тестирования на ROSiK: правая половина — LED 4..7.
+// При другой ориентации монтажа перепроверьте индексы.
+const uint8_t RIGHT_LED_INDEX[4] = {4, 5, 6, 7};
 
 enum AutoState { AUTO_STOP, AUTO_FORWARD, AUTO_TURN_RIGHT };
 AutoState autoState = AUTO_STOP;
@@ -1001,7 +1001,7 @@ void autonomousLeds(uint32_t now) {
   } else {
     fill_solid(leds, NUM_LEDS, CRGB::Black);
     if ((now / 300) % 2 == 0) {
-      for (uint8_t i = 0; i < 3; ++i)
+      for (uint8_t i = 0; i < 4; ++i)
         leds[RIGHT_LED_INDEX[i]] = CRGB::Yellow;
     }
   }
